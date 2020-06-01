@@ -47,8 +47,5 @@
 		</plugins>
 	</build>
 
-	<scm>
-		<developerConnection>scm:git:git@github.com:oselesley/sfg-pet-clinic.git</developerConnection>
-  </scm>
 
 </project>
