@@ -2,10 +2,10 @@ package lesley.springframework.sfgpetclinic.services;
 
 import java.util.Set;
 
-public interface CrudService<T, I> {
-    T findById(I id);
+public interface CrudService<T, ID> {
+    T findById(ID id);
 
-    T save(T owner);
+    T save(T object);
 
     Set<T> findAll();
 }
