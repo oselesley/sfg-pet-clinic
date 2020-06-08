@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Owners</title>
+</head>
+<body>
+    <h1>Owners</h1>
+    <ul th:each="owner : ${owners}">
+        <li>
+            <span th:text="${owner.getFirstName()}">first name </span>
+            <span th:text="${owner.getLastName()}">last name</span>
+        </li>
+    </ul>
+</body>
+</html>
