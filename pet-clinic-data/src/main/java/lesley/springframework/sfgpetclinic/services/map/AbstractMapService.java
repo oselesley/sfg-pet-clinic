@@ -10,6 +10,7 @@ import java.util.Set;
 
 public abstract class AbstractMapService<ID, T extends BaseEntity> {
     private Map<ID, T> abstMap = new HashMap<>();
+    private Long objID = 1L;
 
     public Map<ID, T> getAbstMap() {
         return abstMap;
@@ -24,6 +25,8 @@ public abstract class AbstractMapService<ID, T extends BaseEntity> {
     }
 
     public T save(T object) {
+        object.setId(objID);
+        getNextID();
         return abstMap.put((ID) object.getId(), object);
     }
 
@@ -37,5 +40,9 @@ public abstract class AbstractMapService<ID, T extends BaseEntity> {
 
     public void deleteByObject(T object) {
         abstMap.entrySet().removeIf(idtEntry -> idtEntry.getValue().equals(object));
+    }
+
+    private void getNextID () {
+        this.objID++;
     }
 }
