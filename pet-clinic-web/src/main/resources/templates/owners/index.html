@@ -6,11 +6,17 @@
 </head>
 <body>
     <h1>Owners</h1>
-    <ul th:each="owner : ${owners}">
-        <li>
-            <span th:text="${owner.getFirstName()}">first name </span>
-            <span th:text="${owner.getLastName()}">last name</span>
-        </li>
-    </ul>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        <tr th:each="owner : ${owners}">
+            <td th:text="${owner.getId()}">1</td>
+            <td th:text="${owner.getFirstName()}">first name </td>
+            <td th:text="${owner.getLastName()}">last name</td>
+        </tr>
+    </table>
 </body>
 </html>

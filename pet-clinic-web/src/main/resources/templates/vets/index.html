@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Vets</title>
 </head>
 <body>
     <h1>Vets</h1>
-    <ul th:each="vet : ${vets}">
-        <li>
-            <span th:text="${vet.getFirstName()}">Vet 1</span><span th:text="${vet.getLastName()}">Vet 1</span>
-        </li>
-    </ul>
+
 </body>
 </html>
