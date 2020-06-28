@@ -4,14 +4,14 @@ import lesley.springframework.sfgpetclinic.model.Owner;
 import lesley.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Long, Owner> implements OwnerService {
 
     @Override
     public Owner findByLastName(String lastname) {
-        List<Owner> mapIterator = (List) getAbstMap().values();
+        Collection<Owner> mapIterator = getAbstMap().values();
 
         for (Owner owner : mapIterator) {
             if (owner.getLastName().equalsIgnoreCase(lastname)) return  owner;
