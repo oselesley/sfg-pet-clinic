@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public interface CrudService<T, ID> {
+public interface CrudService<ID, T> {
     T findById(ID id);
 
     T save(T object);
