@@ -7,3 +7,5 @@ import org.springframework.stereotype.Service;
 public interface OwnerService extends  CrudService<Long, Owner> {
     Owner findByLastName(String lastname);
 }
+
+

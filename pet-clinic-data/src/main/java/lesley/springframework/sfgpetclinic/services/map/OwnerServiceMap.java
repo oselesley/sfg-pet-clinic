@@ -1,13 +1,23 @@
 package lesley.springframework.sfgpetclinic.services.map;
 
 import lesley.springframework.sfgpetclinic.model.Owner;
+import lesley.springframework.sfgpetclinic.model.Pet;
 import lesley.springframework.sfgpetclinic.services.OwnerService;
+import lesley.springframework.sfgpetclinic.services.PetService;
+import lesley.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Long, Owner> implements OwnerService {
+    private PetService petService;
+    private PetTypeService petTypeService;
+
+    public OwnerServiceMap(PetService petService, PetTypeService petTypeService) {
+        this.petService = petService;
+        this.petTypeService = petTypeService;
+    }
 
     @Override
     public Owner findByLastName(String lastname) {
@@ -20,4 +30,27 @@ public class OwnerServiceMap extends AbstractMapService<Long, Owner> implements 
         return  null;
     }
 
+    @Override
+    public Owner save(Owner object) {
+        if (object != null) {
+            if (object.getPets() != null) {
+                object.getPets().forEach(pet -> {
+                    if (pet.getPetType() != null) {
+                        if (pet.getPetType().getId() == null) {
+                            pet.setPetType(petTypeService.save(pet.getPetType()));
+                            System.out.println(pet.getPetType());
+                        }
+                    } else {
+                        throw new RuntimeException("Pet Type is required!!");
+                    }
+
+                    if (pet.getId() == null) {
+                        Pet pet1 = petService.save(pet);
+                        pet.setId(pet.getId());
+                    }
+                });
+            }
+            return super.save(object);
+        } else return null;
+    }
 }

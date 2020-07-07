@@ -25,9 +25,13 @@ public abstract class AbstractMapService<ID, T extends BaseEntity> {
     }
 
     public T save(T object) {
-        object.setId(objID);
-        getNextID();
-        return abstMap.put((ID) object.getId(), object);
+        if (object.getId() == null) {
+            object.setId(objID);
+            getNextID();
+        } else System.out.printf("Already has an id! yay!! %s%n", object);
+
+        abstMap.put((ID) object.getId(), object);
+        return object;
     }
 
     public Set<T> findAll() {

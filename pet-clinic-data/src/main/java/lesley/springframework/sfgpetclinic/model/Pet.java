@@ -5,7 +5,16 @@ import java.time.LocalDate;
 public class Pet extends BaseEntity {
     private LocalDate birthDate;
     private PetType petType;
-    private Person Owner;
+    private Owner owner;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public LocalDate getBirthDate() {
         return birthDate;
@@ -23,12 +32,12 @@ public class Pet extends BaseEntity {
         this.petType = petType;
     }
 
-    public Person getOwner() {
-        return Owner;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setOwner(Person owner) {
-        Owner = owner;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
@@ -36,7 +45,7 @@ public class Pet extends BaseEntity {
         return "Owner{" +
                 "birthDate=" + birthDate +
                 ", petType='" + petType + '\'' +
-                ", Owner=" + Owner +
+                ", Owner=" + owner +
                 '}';
     }
 }
