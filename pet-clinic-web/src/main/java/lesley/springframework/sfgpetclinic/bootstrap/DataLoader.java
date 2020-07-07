@@ -97,7 +97,7 @@ public class DataLoader implements CommandLineRunner {
 
         vetServiceMap.save(vet3);
 
-        System.out.println("Loaded Vets......");
+        System.out.println("Loaded Vets...");
 
     }
 }
