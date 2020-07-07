@@ -8,6 +8,12 @@ import java.util.List;
 
 @Service
 public class VetServiceMap extends  AbstractMapService<Long, Vet> implements VetService {
+    private SpecialtyServiceMap specialtyServiceMap;
+
+    public VetServiceMap(SpecialtyServiceMap specialtyServiceMap) {
+        this.specialtyServiceMap = specialtyServiceMap;
+    }
+
     @Override
     public Vet findByLastName(String lastname) {
         List<Vet> mapValues = (List) getAbstMap().values();
@@ -18,5 +24,19 @@ public class VetServiceMap extends  AbstractMapService<Long, Vet> implements Vet
         }
 
         return null;
+    }
+
+    @Override
+    public Vet save(Vet object) {
+        if (object.getSpecialities().size() > 0) {
+            object.getSpecialities().forEach(speciality -> {
+                if (speciality.getId() == null) {
+                    speciality = specialtyServiceMap.save(speciality);
+                }
+            });
+
+            return super.save(object);
+        }
+        return super.save(object);
     }
 }
