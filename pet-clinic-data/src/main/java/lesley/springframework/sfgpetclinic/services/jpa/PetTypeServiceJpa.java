@@ -6,6 +6,7 @@ import lesley.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -19,7 +20,7 @@ public class PetTypeServiceJpa implements PetTypeService {
 
     @Override
     public PetType findById(Long aLong) {
-        return petTypeRepository.findById(aLong);
+        return petTypeRepository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -29,6 +30,8 @@ public class PetTypeServiceJpa implements PetTypeService {
 
     @Override
     public Set<PetType> findAll() {
-        return petTypeRepository.findAll();
+        Set<PetType> petTypes = new HashSet<>();
+        petTypeRepository.findAll().forEach(petTypes::add);
+        return petTypes;
     }
 }
