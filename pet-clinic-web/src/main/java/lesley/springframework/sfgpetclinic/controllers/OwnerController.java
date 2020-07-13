@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {
-    private OwnerService ownerServiceMap;
+    private OwnerService ownerService;
 
-    public OwnerController(OwnerService ownerServiceMap) {
-        this.ownerServiceMap = ownerServiceMap;
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
     }
 
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String ownersPage (Model model) {
-        model.addAttribute("owners", ownerServiceMap.findAll());
+        model.addAttribute("owners", ownerService.findAll());
 
         return "owners/index";
     }

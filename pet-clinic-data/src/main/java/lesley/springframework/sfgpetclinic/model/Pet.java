@@ -57,6 +57,14 @@ public class Pet extends BaseEntity {
         this.owner = owner;
     }
 
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
+    }
+
     @Override
     public String toString() {
         return "Owner{" +
