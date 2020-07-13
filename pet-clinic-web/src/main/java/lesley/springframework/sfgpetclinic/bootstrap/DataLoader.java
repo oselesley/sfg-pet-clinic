@@ -1,10 +1,7 @@
 package lesley.springframework.sfgpetclinic.bootstrap;
 
 import lesley.springframework.sfgpetclinic.model.*;
-import lesley.springframework.sfgpetclinic.services.OwnerService;
-import lesley.springframework.sfgpetclinic.services.PetTypeService;
-import lesley.springframework.sfgpetclinic.services.SpecialtyService;
-import lesley.springframework.sfgpetclinic.services.VetService;
+import lesley.springframework.sfgpetclinic.services.*;
 import lesley.springframework.sfgpetclinic.services.map.PetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,19 +15,22 @@ public class DataLoader implements CommandLineRunner {
     private PetServiceMap petServiceMap;
     private PetTypeService petTypeServiceMap;
     private SpecialtyService specialtyServiceMap;
+    private VisitService visitServiceMap;
 
 
     public DataLoader(OwnerService ownerServiceMap,
                       VetService vetServiceMap,
                       PetServiceMap petServiceMap,
                       PetTypeService petTypeServiceMap,
-                      SpecialtyService specialtyServiceMap)
+                      SpecialtyService specialtyServiceMap,
+                      VisitService visitServiceMap)
     {
         this.ownerServiceMap = ownerServiceMap;
         this.vetServiceMap = vetServiceMap;
         this.petServiceMap = petServiceMap;
         this.petTypeServiceMap = petTypeServiceMap;
         this.specialtyServiceMap = specialtyServiceMap;
+        this.visitServiceMap = visitServiceMap;
     }
 
     @Override
@@ -96,9 +96,14 @@ public class DataLoader implements CommandLineRunner {
         fionasPet.setName("Rosco");
         fionasPet.setBirthDate(LocalDate.now());
         fiona.getPets().add(fionasPet);
-//        fionasPet.setOwner(fiona);
+        fionasPet.setOwner(fiona);
         fiona = ownerServiceMap.save(fiona);
 
+        Visit dogVisit = new Visit();
+        dogVisit.setPet(fionasPet);
+        dogVisit.setDescription("Sneezy Doggy");
+        dogVisit.setDate(LocalDate.now());
+        visitServiceMap.save(dogVisit);
 
         System.out.println("Loaded Owners......");
 
