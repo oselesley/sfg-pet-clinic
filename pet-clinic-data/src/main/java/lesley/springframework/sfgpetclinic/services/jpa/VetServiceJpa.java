@@ -3,6 +3,7 @@ package lesley.springframework.sfgpetclinic.services.jpa;
 import lesley.springframework.sfgpetclinic.model.Vet;
 import lesley.springframework.sfgpetclinic.repositories.VetRepository;
 import lesley.springframework.sfgpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 
 @Service
+@Profile(value = "springdatajpa")
 public class VetServiceJpa implements VetService {
     private VetRepository vetRepository;
 
