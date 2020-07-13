@@ -57,7 +57,6 @@ public class Pet extends BaseEntity {
         return "Owner{" +
                 "birthDate=" + birthDate +
                 ", petType='" + petType + '\'' +
-                ", Owner=" + owner +
                 '}';
     }
 }
