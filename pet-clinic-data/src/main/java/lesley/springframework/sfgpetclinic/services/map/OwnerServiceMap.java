@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
@@ -40,7 +42,6 @@ public class OwnerServiceMap extends AbstractMapService<Long, Owner> implements 
                     if (pet.getPetType() != null) {
                         if (pet.getPetType().getId() == null) {
                             pet.setPetType(petTypeService.save(pet.getPetType()));
-                            System.out.println(pet.getPetType());
                         }
                     } else {
                         throw new RuntimeException("Pet Type is required!!");
@@ -54,5 +55,25 @@ public class OwnerServiceMap extends AbstractMapService<Long, Owner> implements 
             }
             return super.save(object);
         } else return null;
+    }
+
+    @Override
+    public Owner findById(Long aLong) {
+        return super.findById(aLong);
+    }
+
+    @Override
+    public Set<Owner> findAll() {
+        return super.findAll();
+    }
+
+    @Override
+    public void delete(Long aLong) {
+        super.delete(aLong);
+    }
+
+    @Override
+    public void deleteByObject(Owner object) {
+        super.deleteByObject(object);
     }
 }

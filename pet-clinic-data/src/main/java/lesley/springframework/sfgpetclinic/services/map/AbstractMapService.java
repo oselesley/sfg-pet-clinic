@@ -28,7 +28,7 @@ public abstract class AbstractMapService<ID, T extends BaseEntity> {
         if (object.getId() == null) {
             object.setId(objID);
             getNextID();
-        } else System.out.printf("Already has an id! yay!! %s%n", object);
+        }
 
         abstMap.put((ID) object.getId(), object);
         return object;
