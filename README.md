@@ -1,2 +1,2 @@
 # sfg-pet-clinic
-Spring Pet Clinic
+Spring Pet Clinic Project
