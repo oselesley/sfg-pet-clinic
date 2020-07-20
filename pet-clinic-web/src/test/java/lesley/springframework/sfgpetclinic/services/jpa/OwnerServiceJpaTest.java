@@ -2,6 +2,7 @@ package lesley.springframework.sfgpetclinic.services.jpa;
 
 import lesley.springframework.sfgpetclinic.model.Owner;
 import lesley.springframework.sfgpetclinic.repositories.OwnerRepository;
+import lesley.springframework.sfgpetclinic.services.jpa.OwnerServiceJpa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
